@@ -1,0 +1,38 @@
+const form = document.getElementById("todo-form");
+const input = document.getElementById("todo-input");
+const list = document.getElementById("todo-list");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const taskText = input.value;
+    const li = document.createElement("li");
+    
+    const span = document.createElement("span");
+    span.textContent = taskText;
+    
+    const btnGroup = document.createElement("div");
+    btnGroup.className = "btn-group";
+
+    const doneBtn = document.createElement("button");
+    doneBtn.textContent = "valide";
+    doneBtn.className = "btn-valide";
+    doneBtn.onclick = function() {
+        span.classList.toggle("completed-text");
+    };
+    
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "supprime";
+    deleteBtn.className = "btn-supprime";
+    deleteBtn.onclick = function() {
+        list.removeChild(li);
+    };
+    
+    btnGroup.appendChild(doneBtn);
+    btnGroup.appendChild(deleteBtn);
+    li.appendChild(span);
+    li.appendChild(btnGroup);
+    list.appendChild(li);
+    
+    input.value = "";
+});
